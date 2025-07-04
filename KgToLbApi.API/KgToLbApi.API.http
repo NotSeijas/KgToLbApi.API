@@ -1,0 +1,6 @@
+@KgToLbApi.API_HostAddress = http://localhost:5034
+
+GET {{KgToLbApi.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
