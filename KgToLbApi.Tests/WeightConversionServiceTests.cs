@@ -1,15 +1,31 @@
-namespace KgToLbApi.Domain
+using KgToLbApi.Domain;
+using Xunit;
+
+namespace KgToLbApi.Tests
 {
-    public class WeightConversionService
+    public class WeightConversionServiceTests
     {
-        private const double KgToPoundsFactor = 2.20462;
-
-        public double ConvertKgToPounds(double kilograms)
+        [Fact]
+        public void ConvertKgToPounds_OneKg_ReturnsCorrectValue()
         {
-            if (kilograms < 0)
-                throw new ArgumentException("Kilograms must be positive.");
+            // Arrange
+            var service = new WeightConversionService();
 
-            return kilograms * KgToPoundsFactor;
+            // Act
+            var result = service.ConvertKgToPounds(1);
+
+            // Assert
+            Assert.Equal(2.20462, result, 5);
+        }
+
+        [Fact]
+        public void ConvertKgToPounds_NegativeKg_ThrowsArgumentException()
+        {
+            // Arrange
+            var service = new WeightConversionService();
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => service.ConvertKgToPounds(-1));
         }
     }
 }
